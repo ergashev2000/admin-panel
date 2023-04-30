@@ -1,0 +1,48 @@
+@import '../../styles/variables';
+
+.sidebar__wrapper {
+    width: 20%;
+    height: 100vh;
+    background-color: $primary-color;
+
+    .nav__items {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 10px;
+        padding: 50px 0;
+
+        .nav__item {
+
+            .nav__item--link {
+                display: block;
+                padding: 12px 30px;
+                font-size: 22px;
+                font-weight: 400;
+                color: $text-light;
+                transition: all .4s;
+                border-left: 5px solid transparent;
+
+                span {
+                    padding-right: 10px;
+                }
+
+                &:hover {
+                    border-left: 5px solid #fff;
+                    background-color: #ffffff4f;
+                    padding-left: 40px;
+                }
+
+                &:active {
+                    background-color: #ffffff2c;
+                }
+            }
+
+            .active {
+                background-color: #ffffff4f;
+                padding-left: 40px !important;
+                border-left: 5px solid #fff !important;
+            }
+        }
+    }
+}

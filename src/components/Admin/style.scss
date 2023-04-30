@@ -1,0 +1,33 @@
+@import '../../styles/variables';
+
+
+.admin__wrapper {
+    width: 80%;
+    height: 100vh;
+    padding: 15px 25px;
+
+    .admin__content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        &--head {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+
+            .admin__head--counter{
+                font-size: 15px;
+                font-weight: 500;
+                padding-left: 20px;
+            }
+
+            &-title{
+                font-size: 28px;
+                font-weight: 600;
+            }
+        }
+
+    }
+}

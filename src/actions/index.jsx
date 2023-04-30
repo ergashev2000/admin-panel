@@ -1,5 +1,6 @@
 import { getAdminData, getClientData } from '../api';
 
+// GET DATA FROM USERS
 export const fetchAdminData = () => {
   return async (dispatch) => {
     try {
@@ -17,7 +18,7 @@ export const fetchAdminData = () => {
   };
 };
 
-
+// GET DATA FROM CLIENTS
 export const fetchClientData = () => {
   return async (dispatch) => {
     try {

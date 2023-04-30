@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Button, Space, Popconfirm } from 'antd';
-import UserModal from '../Modal';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchAdminData, isOpenModal } from '../../actions';
+import { fetchAdminData } from '../../actions';
 
+import { Table, Input } from 'antd';
 import './style.scss';
 
 const Index = ({ data, columns }) => {
@@ -13,7 +11,6 @@ const Index = ({ data, columns }) => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const open = useSelector((state) => state.openModal);
-
     const dispatch = useDispatch()
 
     const handleFilter = (event) => {
@@ -39,13 +36,16 @@ const Index = ({ data, columns }) => {
     useEffect(() => {
         setTimeout(() => {
             dispatch(fetchAdminData())
-        }, 1000);
+        }, 500);
     }, [open])
 
     return (
         <div className="table__wrapper">
             <div className="table__search">
-                <Input.Search placeholder="Search by name" onChange={handleFilter} value={searchQuery} enterButton />
+                <Input.Search placeholder="Search by name"
+                    onChange={handleFilter}
+                    value={searchQuery}
+                    enterButton />
             </div>
             <Table
                 dataSource={dataSource}

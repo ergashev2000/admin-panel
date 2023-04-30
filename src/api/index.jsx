@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 // USERS API
-
 export const getAdminData = async () => {
     try {
         const response = await axios.get('https://6420342c82bea25f6dfc0e94.mockapi.io/rc/users');
@@ -11,7 +10,6 @@ export const getAdminData = async () => {
         throw error;
     }
 };
-
 
 export const createAdminData = async (data) => {
     try {
@@ -50,8 +48,7 @@ export const deleteAdminData = async (id) => {
 
 
 
-// CLIENT API
-
+// CLIENTS API
 export const getClientData = async () => {
     try {
         const response = await axios.get('https://6420342c82bea25f6dfc0e94.mockapi.io/rc/clients');

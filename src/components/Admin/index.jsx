@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import './style.scss';
-import { Table, Input, Button, Space, Popconfirm } from 'antd';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAdminData, isOpenModal } from '../../actions';
 
 import UserTable from '../Table';
 import UserModal from '../Modal'
-
 import { handleExportToExcel } from '../Excel'
+
 import { deleteAdminData } from '../../api';
+
+import './style.scss';
+import {
+    Button,
+    Space,
+    Popconfirm
+} from 'antd';
 
 const index = () => {
     const [selectedRecord, setSelectedRecord] = useState(null);
@@ -91,7 +96,7 @@ const index = () => {
                             Export data(Excel)
                         </Button>
                         <h5 className='admin__head--counter'>
-                            Total clients: <span>{data?.length || 0}</span>
+                            Total admins: <span>{data?.length || 0}</span>
                         </h5>
                     </div>
                     <div className="admin__table">

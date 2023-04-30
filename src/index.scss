@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 * {
     padding: 0;
     margin: 0 !important;
@@ -6,12 +7,17 @@
     list-style: none;
 }
 
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 main {
     display: flex;
     justify-content: space-between;
 }
 
-// EDIT FORM ELEMENT
+
+// EDIT TABLE
 .ant-table-cell {
     padding: 6px 8px !important;
 }

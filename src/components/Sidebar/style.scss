@@ -1,47 +1,102 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .sidebar__wrapper {
     width: 20%;
+    min-width: 120px;
     height: 100vh;
-    background-color: $primary-color;
 
-    .nav__items {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        gap: 10px;
-        padding: 50px 0;
+    @include breakpoint(mobile) {
+        width: 15%;
+        min-width: 40px;
+    }
 
-        .nav__item {
+    @include breakpoint(tablet) {
+        width: 15%;
+        min-width: 80px;
+    }
 
-            .nav__item--link {
-                display: block;
-                padding: 12px 30px;
-                font-size: 22px;
-                font-weight: 400;
-                color: $text-light;
-                transition: all .4s;
-                border-left: 5px solid transparent;
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 20%;
+        min-width: 120px;
+        height: 100vh;
+        background-color: $primary-color;
 
-                span {
-                    padding-right: 10px;
+        @include breakpoint(mobile) {
+            width: 15%;
+            min-width: 40px;
+        }
+
+        @include breakpoint(tablet) {
+            width: 15%;
+            min-width: 80px;
+        }
+
+        .nav__items {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            gap: 10px;
+            padding: 50px 0;
+
+            .nav__item {
+
+                @include breakpoint(tablet) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding-left: auto;
+                    text-align: center;
+                    margin: 5px;
                 }
 
-                &:hover {
-                    border-left: 5px solid #fff;
+                &--link {
+                    display: block;
+                    padding: 12px 30px;
+                    font-size: 22px;
+                    font-weight: 400;
+                    color: $text-light;
+                    transition: all .4s;
+                    border-left: 5px solid transparent;
+
+                    span {
+                        padding-right: 10px;
+                    }
+
+                    &:hover {
+                        border-left: 5px solid #fff;
+                        background-color: #ffffff4f;
+                        padding-left: 40px;
+                    }
+
+                    &:active {
+                        background-color: #ffffff2c;
+                    }
+
+                    @include breakpoint(mobile) {
+                        padding-left: 5px;
+                        font-size: 14px;
+
+                    }
+
+                    @include breakpoint(tablet) {
+                        padding-left: 10px;
+                        font-size: 18px;
+                    }
+
+                    @include breakpoint(desktop) {
+                        padding-left: 15px;
+                    }
+                }
+
+                .active {
                     background-color: #ffffff4f;
-                    padding-left: 40px;
-                }
+                    border-left: 5px solid #fff !important;
 
-                &:active {
-                    background-color: #ffffff2c;
                 }
-            }
-
-            .active {
-                background-color: #ffffff4f;
-                padding-left: 40px !important;
-                border-left: 5px solid #fff !important;
             }
         }
     }

@@ -1,13 +1,19 @@
-.admin__content{
+.admin__content {
     display: flex;
     justify-content: space-between;
 }
 
+.table__wrapper {
+    overflow-x: auto;
 
+    .ant-table {
+        min-width: 100%!important;
+    }
 
-.table__search {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
+    .table__search {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+    }
 }

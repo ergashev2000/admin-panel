@@ -1,21 +1,39 @@
-// import axios from 'axios';
+import { getAdminData, getClientData } from '../api';
 
-// export const fetchAudioData = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get("http://localhost:3000/api/channel/audios");
-//       dispatch({
-//         type: 'FETCH_AUDIO_SUCCESS',
-//         payload: response.data
-//       });
-//     } catch (error) {
-//       dispatch({
-//         type: 'FETCH_AUDIO_ERROR',
-//         payload: error.message
-//       });
-//     }
-//   };
-// };
+export const fetchAdminData = () => {
+  return async (dispatch) => {
+    try {
+      const response = await getAdminData();
+      dispatch({
+        type: 'FETCH_ADMIN_SUCCESS',
+        payload: response
+      });
+    } catch (error) {
+      dispatch({
+        type: 'FETCH_ADMIN_ERROR',
+        payload: error.message
+      });
+    }
+  };
+};
+
+
+export const fetchClientData = () => {
+  return async (dispatch) => {
+    try {
+      const response = await getClientData();
+      dispatch({
+        type: 'FETCH_CLIENT_SUCCESS',
+        payload: response
+      });
+    } catch (error) {
+      dispatch({
+        type: 'FETCH_CLIENT_ERROR',
+        payload: error.message
+      });
+    }
+  };
+};
 
 export const isOpenModal = (open) => {
   return (dispatch) => {

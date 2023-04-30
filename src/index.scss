@@ -11,7 +11,30 @@ main {
     justify-content: space-between;
 }
 
+// EDIT FORM ELEMENT
 .ant-table-cell {
     padding: 6px 8px !important;
 }
 
+.ant-modal-body form {
+
+    .ant-col {
+        padding: 4px 0 0 0 !important;
+    }
+
+    input {
+        margin-bottom: 10px !important;
+    }
+}
+
+.ant-modal-footer {
+    margin-top: 20px !important;
+
+    button {
+        margin-right: 10px !important;
+    }
+}
+
+.ant-empty-image {
+    min-height: 300px;
+}

@@ -1,101 +1,85 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.scss';
+import { Table, Input, Button, Space, Popconfirm } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { isOpenModal } from '../../actions';
-import Table from '../Table';
-import UserModal from '../Modal'
-import { handleExportToExcel } from '../Excel'
+import { fetchAdminData, isOpenModal } from '../../actions';
 
-import { Button } from 'antd';
+import UserTable from '../Table';
+import UserModal from '../Modal'
+
+import { handleExportToExcel } from '../Excel'
+import { deleteAdminData } from '../../api';
 
 const index = () => {
-
+    const [selectedRecord, setSelectedRecord] = useState(null);
     const dispatch = useDispatch()
+    const data = useSelector((state) => state.adminData);
 
-    const data = [
+    const columns = [
         {
-            id: 1,
-            firstname: 'asdsd',
-            lastname: 'jlhg',
-            role: 'admin'
+            title: '№',
+            dataIndex: 'index',
+            key: 'id',
+            render: (_, __, index) => index + 1,
+            width: 60,
+            fixed: 'left',
         },
         {
-            id: 2,
-            firstname: 'bdasd',
-            lastname: 'ejbjhd',
-            role: 'salom'
+            title: 'First Name',
+            dataIndex: 'first_name',
+            key: 'first_name',
+            ellipsis: true,
+            sorter: (a, b) => a.first_name?.localeCompare(b.first_name),
         },
         {
-            id: 3,
-            firstname: 'casdakjhl',
-            lastname: 'dkjl',
+            title: 'Last Name',
+            dataIndex: 'last_name',
+            key: 'last_name',
+            sorter: (a, b) => a.last_name?.localeCompare(b.last_name),
+            ellipsis: true,
         },
         {
-            id: 4,
-            firstname: 'asdsd',
-            lastname: 'jlhg',
+            title: 'Role',
+            dataIndex: 'role',
+            key: 'role',
+            render: (_, record) => record.role,
         },
         {
-            id: 5,
-            firstname: 'bdasd',
-            lastname: 'ejbjhd',
-        },
-        {
-            id: 6,
-            firstname: 'casdakjhl',
-            lastname: 'dkjl',
-        },
-        {
-            id: 12,
-            firstname: 'asdsd',
-            lastname: 'jlhg',
-        },
-        {
-            id: 23,
-            firstname: 'bdasd',
-            lastname: 'ejbjhd',
-        },
-        {
-            id: 31,
-            firstname: 'casdakjhl',
-            lastname: 'dkjl',
-        },
-        {
-            id: 13,
-            firstname: 'asdsd',
-            lastname: 'jlhg',
-        },
-        {
-            id: 222,
-            firstname: 'bdasd',
-            lastname: 'ejbjhd',
-        },
-        {
-            id: 3456,
-            firstname: 'casdakjhl',
-            lastname: 'dkjl',
-        },
-        {
-            id: 1456,
-            firstname: 'asdsd',
-            lastname: 'jlhg',
-        },
-        {
-            id: 23453,
-            firstname: 'bdasd',
-            lastname: 'ejbjhd',
-        },
-        {
-            id: 3324,
-            firstname: 'casdakjhl',
-            lastname: 'dkjl',
+            title: 'Actions',
+            dataIndex: 'actions',
+            key: 'actions',
+            render: (_, record) => (
+                <Space size="small">
+                    <Button onClick={() => handleEdit(record)}>Edit</Button>
+                    <Popconfirm
+                        title="Are you sure to delete this User?"
+                        onConfirm={() => handleDelete(record)}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <Button type="danger" >Delete</Button>
+                    </Popconfirm>
+                </Space>
+            ),
         },
     ];
 
+    const handleDelete = (record) => {
+        deleteAdminData(record.id)
+        setTimeout(() => {
+            dispatch(fetchAdminData())
+        }, 500);
+    };
+
+    const handleEdit = (record) => {
+        setSelectedRecord(record);
+        dispatch(isOpenModal(true));
+    };
+
     return (
         <div className="admin__wrapper">
-            <UserModal/>
+            <UserModal selectedRecord={selectedRecord} />
             <div className="admin">
                 <div className="admin__content">
                     <div className="admin__content--head">
@@ -103,15 +87,15 @@ const index = () => {
                         <Button type="primary" onClick={() => dispatch(isOpenModal(true))}>
                             Add new
                         </Button>
-                        <Button onClick={() => handleExportToExcel(data)}>
+                        <Button onClick={data && (() => handleExportToExcel(data))}>
                             Export data(Excel)
                         </Button>
                         <h5 className='admin__head--counter'>
-                            Total clients: <span>{data?.length}</span>
+                            Total clients: <span>{data?.length || 0}</span>
                         </h5>
                     </div>
                     <div className="admin__table">
-                        <Table data={data} />
+                        <UserTable data={data} columns={columns} />
                     </div>
                 </div>
             </div>
